@@ -21,6 +21,7 @@ const gameBoard = (()=>{
     function resetBoard(){
         board.childNodes.forEach(a=>{a.innerHTML=''});
         board.childNodes.forEach(a=>{a.style.cursor='pointer'});
+        result.style.display = 'none';
     }
     
     return{createBoard,resetBoard,status};
@@ -30,16 +31,14 @@ const gameBoard = (()=>{
 gameBoard.createBoard();
 
 const gameHandler = (()=>{
-    
+    const result = document.getElementById('result');
     
     const cellEvent = (cell)=>{
-        console.log(gameBoard.status);
         if(cell.innerHTML == ""){
         cell.innerHTML = `<span>X</span>`;
         cell.style.cursor = 'default';
         gameBoard.status[cell.id.split(",")[0]][cell.id.split(",")[1]] = 1;
         let x = minimax(gameBoard.status,'ai').bestMove;
-        console.log(x);
         if(!gameFinished()){
         document.getElementById(`${x[0]},${x[1]}`).innerHTML = `<span>O</span>` ;
         document.getElementById(`${x[0]},${x[1]}`).style.cursor = 'default';
@@ -149,13 +148,20 @@ const gameHandler = (()=>{
         if(!gameFinished()){
             cellEvent(this);
             if(check(gameBoard.status,'human')){
-                setTimeout(function(){ alert("YOU WON"); }, 500);
+                setTimeout(function(){ 
+                    result.innerHTML='You won!' 
+                    result.style.display = 'block';}, 500);
+                    
             }
             if(check(gameBoard.status,'ai')){
-                setTimeout(function(){ alert("YOU LOST"); }, 500);
+                setTimeout(function(){ 
+                    result.innerHTML='You lost!' 
+                    result.style.display = 'block';}, 500);
             }
             else if(gameFinished()){
-                setTimeout(function(){ alert("TIE"); }, 500);
+                setTimeout(function(){ 
+                    result.innerHTML='Tie!'
+                    result.style.display = 'block'; }, 500);
             }
         }
         
