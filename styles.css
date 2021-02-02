@@ -1,0 +1,51 @@
+body{
+    width: 100%;
+}
+header{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+}
+#board{
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    
+}
+#boardArea{   
+    display: grid;
+    width: 300px;
+    margin: auto;
+    grid-template-columns: repeat(3,100px);
+    grid-template-rows: repeat(3,100px);
+}
+.cell{
+    border: 1px solid black;
+    font-size: 5em;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor:pointer;
+}
+.cell span{
+    display: inline-block;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+    animation-name: test;
+    animation-duration: 0.5s;
+    user-select: none;
+    
+}
+@keyframes test{
+        from{transform: scale(0.5);}
+        to{transform: scale(1);}
+}
+
+.restart{
+    width: fit-content;
+    margin: auto;
+}
+.restart button{
+    margin-top: 5px;
+}
